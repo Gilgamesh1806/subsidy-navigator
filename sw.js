@@ -4,7 +4,7 @@
 // Bump CACHE_VERSION on every deploy. The browser then installs the new files
 // in the background; the new version takes over on the next launch (no prompt
 // in the middle of a demo), and the old cache is deleted.
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const CACHE = 'subsidy-navigator-' + CACHE_VERSION;
 
 // The app shell. Paths are relative to this file, so they work on GitHub
