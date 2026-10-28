@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="mfe">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Subsidy Navigator</title>
+  <meta name="description" content="Find Mauritius SME grants, loans and obligations in Kreol, French or English. Guidance, not legal advice.">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#3D3C3A">
+
+  <!-- Installable app (PWA) -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Navigator">
+
+  <!-- Fonts are self-hosted (fonts/); preload the two used on first paint -->
+  <link rel="preload" href="fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/nunito-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/app.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body data-screen="home">
+  <div class="app" id="app">
+    <!-- App bar: static, so it paints before JavaScript runs -->
+    <header class="appbar" id="appbar">
+      <div class="appbar-row">
+        <button type="button" class="appbar-back pressable" id="btn-back" aria-label="Retour" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="brand" id="brand">
+          <svg class="logo" width="28" height="28" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+            <circle cx="50" cy="50" r="50" fill="#C0976A"/>
+            <rect x="31" y="31" width="38" height="38" transform="rotate(45 50 50)" fill="#3D3C3A"/>
+          </svg>
+          <span class="brand-name">Subsidy Navigator</span>
+        </div>
+        <p class="appbar-title" id="appbar-title" hidden></p>
+        <div class="lang" id="lang-switch" role="radiogroup" aria-label="Lang">
+          <label class="lang-seg" lang="mfe"><input type="radio" name="lang" value="km" aria-label="Kreol Morisien" checked><span aria-hidden="true">KM</span></label>
+          <label class="lang-seg" lang="fr"><input type="radio" name="lang" value="fr" aria-label="Français"><span aria-hidden="true">FR</span></label>
+          <label class="lang-seg" lang="en"><input type="radio" name="lang" value="en" aria-label="English"><span aria-hidden="true">EN</span></label>
+        </div>
+      </div>
+      <div class="offline-row" id="offline-row" hidden>
+        <p class="offline-pill">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 3 18 18"/><path d="M6.3 6.3A6 6 0 0 0 8.5 18h8.8"/><path d="M20.6 16.3A4 4 0 0 0 17.5 10h-1.3a6 6 0 0 0-6.9-4.4"/></svg>
+          <span id="offline-text">Offline — li marse mem</span>
+        </p>
+      </div>
+    </header>
+
+    <!-- Each screen renders here and owns its own scroll area -->
+    <main class="screen" id="screen" tabindex="-1">
+      <!-- Boot skeleton: the composer shape, shown until app.js renders -->
+      <div class="hero">
+        <h1 class="display">Dekrir ou biznes</h1>
+        <p class="hero-sub">Ekrir enn ou de fraz, dan Kreol, Franse ouswa Angle.</p>
+        <p class="tagline">Ou biznes. Ou lang. Ou sipor.</p>
+      </div>
+      <div class="card composer skeleton" aria-hidden="true">
+        <div class="sk sk-line"></div>
+        <div class="sk sk-persona"></div>
+        <div class="sk sk-input"></div>
+      </div>
+      <noscript>
+        <p class="noscript">Sa app la bizin JavaScript. · Cette app a besoin de JavaScript. · This app needs JavaScript.</p>
+      </noscript>
+    </main>
+
+    <!-- Sticky bottom action area -->
+    <footer class="bottombar" id="bottombar"></footer>
+  </div>
+
+  <!-- One polite live region for status messages -->
+  <div class="vh" id="live" aria-live="polite" aria-atomic="true"></div>
+  <!-- Toasts (visual; their text also goes to the live region) -->
+  <div class="toast" id="toast" hidden></div>
+  <!-- Built just before printing ("Save as PDF") -->
+  <div class="print-sheet" id="print-sheet"></div>
+</body>
+</html>
